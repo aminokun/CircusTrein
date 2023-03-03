@@ -16,40 +16,25 @@ namespace CircusTrein
         {
             animals.Add(animal); // Add the animal to the list
             sizePoints += animal.GetSizePoints(); // Increase the total size points of the wagon 
-
-            //niet bijhouden
         }
-
-
-
 
         //Method to check if an animal can be added to the wagon
         public bool CanAddAnimal(Animal animal)
         {
-            if (sizePoints + animal.GetSizePoints() > 10) 
+            if (sizePoints + animal.GetSizePoints() > 10)
                 return false;
 
-            // Check if the animal can be with other aminal in same wagon
+            // Check if the animal can be with other animal in the same wagon
             foreach (Animal a in animals)
             {
                 if (a.Diet == "meat" && animal.Diet == "meat") // If both animals are meat eaters, they cannot be in the same wagon
                     return false;
                 if (a.Diet == "plants" && animal.Diet == "meat") // If the wagon already has an animal that cannot be with meat eaters, return false
                     return false;
-                if (a.Diet == "meat" && a.SizeValue >= animal.SizeValue) // If there is a larger meat eater in the wagon, the new animal cannot be added
-                    return false;
-
-                // If all checks pass, return true
-                return true;
             }
 
             return true; // If the animal can be added and the wagon has capacity, return true
         }
-
-
-
-
-
 
 
         // Method to generate a string representation of the wagon
